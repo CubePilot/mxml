@@ -80,8 +80,10 @@ mxml_error(const char *format,		/* I - Printf-style format string */
 
   if (global->error_cb)
     (*global->error_cb)(s);
+#ifdef MXML_DEBUG
   else
     fprintf(stderr, "mxml: %s\n", s);
+#endif
 }
 
 

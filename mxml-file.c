@@ -676,9 +676,9 @@ mxml_fd_getc(void *p,			/* I  - File descriptor buffer */
 
 	if (!(ch & 0x80))
 	{
-#if DEBUG > 1
+#ifdef MXML_DEBUG
           printf("mxml_fd_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
-#endif /* DEBUG > 1 */
+#endif /* MXML_DEBUG */
 
 	  if (mxml_bad_char(ch))
 	  {
@@ -937,7 +937,7 @@ mxml_fd_getc(void *p,			/* I  - File descriptor buffer */
 	break;
   }
 
-#if DEBUG > 1
+#ifdef MXML_DEBUG 
   printf("mxml_fd_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
 #endif /* DEBUG > 1 */
 
@@ -1101,9 +1101,9 @@ mxml_file_getc(void *p,			/* I  - Pointer to file */
 	    return (EOF);
 	  }
 
-#if DEBUG > 1
+#ifdef MXML_DEBUG
           printf("mxml_file_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
-#endif /* DEBUG > 1 */
+#endif /* MXML_DEBUG */
 
 	  return (ch);
         }
@@ -1271,9 +1271,9 @@ mxml_file_getc(void *p,			/* I  - Pointer to file */
 	break;
   }
 
-#if DEBUG > 1
+#ifdef MXML_DEBUG
   printf("mxml_file_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
-#endif /* DEBUG > 1 */
+#endif /* MXML_DEBUG */
 
   return (ch);
 }
@@ -2127,9 +2127,9 @@ mxml_parse_element(
 
   while ((ch = (*getc_cb)(p, encoding)) != EOF)
   {
-#if DEBUG > 1
+#ifdef MXML_DEBUG
     fprintf(stderr, "parse_element: ch='%c'\n", ch);
-#endif /* DEBUG > 1 */
+#endif /* MXML_DEBUG */
 
    /*
     * Skip leading whitespace...
@@ -2417,9 +2417,9 @@ mxml_string_getc(void *p,		/* I  - Pointer to file */
       case ENCODE_UTF8 :
 	  if (!(ch & 0x80))
 	  {
-#if DEBUG > 1
+#ifdef MXML_DEBUG
             printf("mxml_string_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
-#endif /* DEBUG > 1 */
+#endif /* MXML_DEBUG */
 
 	    if (mxml_bad_char(ch))
 	    {
@@ -2477,9 +2477,9 @@ mxml_string_getc(void *p,		/* I  - Pointer to file */
 	      return (EOF);
 	    }
 
-#if DEBUG > 1
+#ifdef MXML_DEBUG
             printf("mxml_string_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
-#endif /* DEBUG > 1 */
+#endif /* MXML_DEBUG */
 
 	    return (ch);
 	  }
@@ -2510,9 +2510,9 @@ mxml_string_getc(void *p,		/* I  - Pointer to file */
 	    if (ch == 0xfeff)
 	      return (mxml_string_getc(p, encoding));
 
-#if DEBUG > 1
+#ifdef MXML_DEBUG
             printf("mxml_string_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
-#endif /* DEBUG > 1 */
+#endif /* MXML_DEBUG */
 
 	    return (ch);
 	  }
@@ -2538,9 +2538,9 @@ mxml_string_getc(void *p,		/* I  - Pointer to file */
 	      return (EOF);
 	    }
 
-#if DEBUG > 1
+#ifdef MXML_DEBUG
             printf("mxml_string_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
-#endif /* DEBUG > 1 */
+#endif /* MXML_DEBUG */
 
 	    return (ch);
 	  }
@@ -2582,9 +2582,9 @@ mxml_string_getc(void *p,		/* I  - Pointer to file */
             ch = (((ch & 0x3ff) << 10) | (lch & 0x3ff)) + 0x10000;
 	  }
 
-#if DEBUG > 1
+#ifdef MXML_DEBUG
           printf("mxml_string_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
-#endif /* DEBUG > 1 */
+#endif /* def MXML_DEBUG */
 
 	  return (ch);
 
@@ -2630,9 +2630,9 @@ mxml_string_getc(void *p,		/* I  - Pointer to file */
             ch = (((ch & 0x3ff) << 10) | (lch & 0x3ff)) + 0x10000;
 	  }
 
-#if DEBUG > 1
+#ifdef MXML_DEBUG
           printf("mxml_string_getc: %c (0x%04x)\n", ch < ' ' ? '.' : ch, ch);
-#endif /* DEBUG > 1 */
+#endif /* def MXML_DEBUG */
 
 	  return (ch);
     }
