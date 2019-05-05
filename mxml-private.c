@@ -46,13 +46,12 @@
 /*
  * 'mxml_error()' - Display an error message.
  */
-
 void
 mxml_error(const char *format,		/* I - Printf-style format string */
            ...)				/* I - Additional arguments as needed */
 {
   va_list	ap;			/* Pointer to arguments */
-  char		s[1024];		/* Message string */
+  char		s[100];		/* Message string */
   _mxml_global_t *global = _mxml_global();
 					/* Global data */
 
@@ -85,7 +84,6 @@ mxml_error(const char *format,		/* I - Printf-style format string */
     fprintf(stderr, "mxml: %s\n", s);
 #endif
 }
-
 
 /*
  * 'mxml_ignore_cb()' - Default callback for ignored values.

@@ -76,7 +76,7 @@ static int		mxml_write_node(mxml_node_t *node, void *p, mxml_save_cb_t cb, int c
 static int		mxml_write_string(const char *s, void *p, _mxml_putc_cb_t putc_cb);
 static int		mxml_write_ws(mxml_node_t *node, void *p, mxml_save_cb_t cb, int ws, int col, _mxml_putc_cb_t putc_cb);
 
-
+#ifndef MXML_LIGHTWEIGHT
 /*
  * 'mxmlLoadFd()' - Load a file descriptor into an XML node tree.
  *
@@ -117,7 +117,7 @@ mxmlLoadFd(mxml_node_t    *top,		/* I - Top node */
 
   return (mxml_load_data(top, &buf, cb, mxml_fd_getc, MXML_NO_CALLBACK, NULL));
 }
-
+#endif
 
 /*
  * 'mxmlLoadFile()' - Load a file into an XML node tree.
@@ -181,7 +181,7 @@ mxmlLoadString(mxml_node_t    *top,	/* I - Top node */
                          NULL));
 }
 
-
+#ifndef MXML_LIGHTWEIGHT
 /*
  * 'mxmlSaveAllocString()' - Save an XML tree to an allocated string.
  *
@@ -330,7 +330,7 @@ mxmlSaveFile(mxml_node_t    *node,	/* I - Node to write */
 
   return (0);
 }
-
+#endif
 
 /*
  * 'mxmlSaveString()' - Save an XML node tree to a string.
@@ -387,7 +387,7 @@ mxmlSaveString(mxml_node_t    *node,	/* I - Node to write */
   return ((int)(ptr[0] - buffer));
 }
 
-
+#ifndef MXML_LIGHTWEIGHT
 /*
  * 'mxmlSAXLoadFd()' - Load a file descriptor into an XML node tree
  *                     using a SAX callback.
@@ -431,7 +431,7 @@ mxmlSAXLoadFd(mxml_node_t    *top,	/* I - Top node */
 
   return (mxml_load_data(top, &buf, cb, mxml_fd_getc, sax_cb, sax_data));
 }
-
+#endif
 
 /*
  * 'mxmlSAXLoadFile()' - Load a file into an XML node tree
@@ -3136,3 +3136,4 @@ mxml_write_ws(mxml_node_t     *node,	/* I - Current node */
 
   return (col);
 }
+
