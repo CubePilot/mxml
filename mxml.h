@@ -25,7 +25,7 @@
 #  include <string.h>
 #  include <ctype.h>
 #  include <errno.h>
-
+#  include "config.h"
 
 /*
  * Constants...
@@ -180,8 +180,10 @@ extern mxml_index_t	*mxmlIndexNew(mxml_node_t *node, const char *element,
 extern mxml_node_t	*mxmlIndexReset(mxml_index_t *ind);
 extern mxml_node_t	*mxmlLoadFd(mxml_node_t *top, int fd,
 			            mxml_type_t (*cb)(mxml_node_t *));
+#ifndef MXML_LIGHTWEIGHT
 extern mxml_node_t	*mxmlLoadFile(mxml_node_t *top, FILE *fp,
 			              mxml_type_t (*cb)(mxml_node_t *));
+#endif
 extern mxml_node_t	*mxmlLoadString(mxml_node_t *top, const char *s,
 			                mxml_type_t (*cb)(mxml_node_t *));
 extern mxml_node_t	*mxmlNewCDATA(mxml_node_t *parent, const char *string);
@@ -210,16 +212,19 @@ extern char		*mxmlSaveAllocString(mxml_node_t *node,
 			        	     mxml_save_cb_t cb);
 extern int		mxmlSaveFd(mxml_node_t *node, int fd,
 			           mxml_save_cb_t cb);
+#ifndef MXML_LIGHTWEIGHT
 extern int		mxmlSaveFile(mxml_node_t *node, FILE *fp,
 			             mxml_save_cb_t cb);
+
+extern mxml_node_t	*mxmlSAXLoadFile(mxml_node_t *top, FILE *fp,
+			                 mxml_type_t (*cb)(mxml_node_t *),
+			                 mxml_sax_cb_t sax, void *sax_data);
+#endif
 extern int		mxmlSaveString(mxml_node_t *node, char *buffer,
 			               int bufsize, mxml_save_cb_t cb);
 extern mxml_node_t	*mxmlSAXLoadFd(mxml_node_t *top, int fd,
 			               mxml_type_t (*cb)(mxml_node_t *),
 			               mxml_sax_cb_t sax, void *sax_data);
-extern mxml_node_t	*mxmlSAXLoadFile(mxml_node_t *top, FILE *fp,
-			                 mxml_type_t (*cb)(mxml_node_t *),
-			                 mxml_sax_cb_t sax, void *sax_data);
 extern mxml_node_t	*mxmlSAXLoadString(mxml_node_t *top, const char *s,
 			                   mxml_type_t (*cb)(mxml_node_t *),
 			                   mxml_sax_cb_t sax, void *sax_data);
