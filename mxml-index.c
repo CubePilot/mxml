@@ -350,7 +350,7 @@ mxmlIndexNew(mxml_node_t *node,		/* I - XML node tree */
       if (!ind->alloc_nodes)
         temp = malloc(64 * sizeof(mxml_node_t *));
       else
-        temp = realloc(ind->nodes, (ind->alloc_nodes + 64) * sizeof(mxml_node_t *));
+        temp = MXML_REALLOC(ind->nodes, (ind->alloc_nodes + 64) * sizeof(mxml_node_t *));
 
       if (!temp)
       {
